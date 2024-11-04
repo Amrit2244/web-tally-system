@@ -35,4 +35,4 @@ export async function POST(request: Request) {
         console.error(error);
         return NextResponse.json({ message: 'Server error' }, { status: 500 });
     }
-}
+};
