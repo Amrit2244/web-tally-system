@@ -1,3 +1,4 @@
+// src/app/layout.tsx (or wherever your root layout is defined)
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -20,11 +21,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode; // Ensure you define the type for children
+}) {
   return (
     <html lang="en">
+      <head>
+        {/* You can include other metadata or links here if needed */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

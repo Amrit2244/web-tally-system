@@ -22,7 +22,7 @@ export default function Login() {
 
             setMessage("Successfully logged in!");
             // Optionally redirect to home or another page
-            router.push("/home");
+            router.push("/dashborad");
         } catch (error: any) {
             if (error.response) {
                 setMessage(error.response.data.error || "Login failed.");

@@ -1,3 +1,4 @@
+// src/app/api/auth/login.ts
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -20,19 +21,15 @@ export async function POST(request: Request) {
             return NextResponse.json({ message: 'Invalid credentials' }, { status: 400 });
         }
 
-        const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-
-        // Optionally, if you want to save token to the database
-        user.jwtToken = token;
-        await user.save();
+        const token = jwt.sign({ userId: user._id, username: user.username, isAdmin: user.isAdmin }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
 
         // Set token in cookies
         const response = NextResponse.json({ message: 'Login successful' });
-        response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+        response.cookies.set('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', path: '/' });
 
         return response;
     } catch (error) {
         console.error(error);
         return NextResponse.json({ message: 'Server error' }, { status: 500 });
     }
-};
+}

@@ -1,35 +1,52 @@
-'use client';
-
+// src/components/Sidebar.tsx
+import React from 'react';
 import Link from 'next/link';
 
 const Sidebar: React.FC = () => {
-    return (
-        <div className="bg-gray-900 text-white h-screen p-5">
-            <h2 className="text-2xl font-bold mb-5">Dashboard</h2>
-            <ul>
-                <li>
-                    <Link href="/sales-entry" className="block py-2 hover:bg-gray-700 rounded">
-                        Sales Entry
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/purchase-entry" className="block py-2 hover:bg-gray-700 rounded">
-                        Purchase Entry
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/payment-entry" className="block py-2 hover:bg-gray-700 rounded">
-                        Payment Entry
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/receipt-entry" className="block py-2 hover:bg-gray-700 rounded">
-                        Receipt Entry
-                    </Link>
-                </li>
-            </ul>
-        </div>
-    );
+  return (
+    <aside className="w-64 h-screen bg-gray-800 text-white fixed">
+      <div className="p-6 text-2xl font-bold">Dashboard</div>
+      <nav className="mt-4">
+        <ul className="space-y-4">
+          <li>
+            <Link href="/dashboard" className="block px-4 py-2 hover:bg-gray-700">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/sales-entry" className="block px-4 py-2 hover:bg-gray-700">
+              Sales Entry
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/purchase-entry" className="block px-4 py-2 hover:bg-gray-700">
+              Purchase Entry
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/payment-entry" className="block px-4 py-2 hover:bg-gray-700">
+              Payment Entry
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/receipt-entry" className="block px-4 py-2 hover:bg-gray-700">
+              Receipt Entry
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/verification" className="block px-4 py-2 hover:bg-gray-700">
+              Verification
+            </Link>
+          </li>
+          <li>
+            <Link href="/dashboard/user-management" className="block px-4 py-2 hover:bg-gray-700">
+              User Management
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  );
 };
 
 export default Sidebar;

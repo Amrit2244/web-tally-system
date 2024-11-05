@@ -1,19 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/utils/jwt';
+// src/middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const token = req.cookies.get('token')?.value;
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('token')?.value;
 
-  try {
-    if (!token || !verifyToken(token)) {
-      return NextResponse.redirect(new URL('/login', req.url));  // Redirect to login if token is invalid
-    }
-  } catch (error) {
-    return NextResponse.redirect(new URL('/login', req.url));
+  // If the token is missing, allow the request to proceed
+  // The client-side code will handle navigation to login
+  if (!token) {
+    return NextResponse.next();
   }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/protected-route/:path*'],  // Only apply to specific routes
+  matcher: ['/dashboard/:path*'],
 };
